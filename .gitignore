@@ -1,0 +1,57 @@
+venv
+# --- Python cache & build files ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# --- Virtual environments ---
+venv/
+.env/
+env/
+.venv/
+
+# --- IDE / Editor settings ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- OS-specific junk ---
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# --- Temp / runtime files ---
+tmp/
+temp/
+*.pid
+*.seed
+
+# --- Model weights, large data (optional) ---
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.tflite
+*.npy
+*.npz
+
+# --- Logs and outputs ---
+logs/
+outputs/
+results/
+*.csv
+
+# --- Ignore CodeFormer cache/temp folders ---
+experiments/
+inference_results/
+CodeFormer
+
+
+bio-scan-pro/node_modules/
