@@ -61,6 +61,22 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+## For image enhancement clone Codeformer from git
+
+```bash
+# git clone this repository
+git clone https://github.com/sczhou/CodeFormer
+cd CodeFormer
+
+# create new anaconda env
+conda create -n codeformer python=3.8 -y
+conda activate codeformer
+
+# install python dependencies
+pip3 install -r requirements.txt
+python basicsr/setup.py develop
+conda install -c conda-forge dlib (only for face detection or cropping with dlib)
+```
 ### Step 4: Download model weights
 
 The system uses InsightFace models which will be auto-downloaded on first run.
@@ -157,8 +173,18 @@ Response:
 ```json
 {
   "status": "success",
+  "branch": "ArcFace",
+  "applicant_id": "APP12345",
+  "probe": {
+    "probe_id": "PROBE123",
+    "filename_orig": "face_orig.jpg",
+    "filename_enh": "face_enh.jpg",
+    "image_url_orig": "http://localhost:8000/static/probes/face_orig.jpg",
+    "image_url_enh": "http://localhost:8000/static/probes/face_enh.jpg"
+  },
   "decision": "unique",
   "action": "Auto-cleared as unique",
+  "reason": "No duplicate found",
   "risk_score": 15.23,
   "risk_level": "LOW",
   "signals": {
@@ -166,11 +192,22 @@ Response:
     "agreement": 33.3,
     "margin": 5.8,
     "morph": 10.0,
+    "forns": 0.0,
     "cohort": 0.0,
     "uncertainty": 8.5
   },
-  "quality_score": 85
+  "best_match": {
+    "match_id": "DB123",
+    "similarity": 78.4,
+    "image_url": "http://localhost:8000/static/db/DB123.jpg"
+  },
+  "matches": [
+    {"match_id": "DB123", "similarity": 78.4},
+    {"match_id": "DB124", "similarity": 75.6}
+  ],
+  "quality_score": 85.0
 }
+
 ```
 
 ### Get Statistics
@@ -211,6 +248,26 @@ face-authentication-system/
 ├── requirements.txt        # Python dependencies
 └── README.md              # This file
 ```
+
+## Run Frontend (bio-scan-pro)
+
+The frontend is a React web dashboard for interacting with the API.
+
+
+
+```bash
+cd bio-scan-pro
+npm install
+npm run dev
+
+```
+
+The frontend will start on http://localhost:8080
+It connects automatically to the backend running at http://localhost:8000
+
+
+
+
 
 ## Signal Explanation
 
